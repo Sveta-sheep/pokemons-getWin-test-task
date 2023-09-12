@@ -1,0 +1,22 @@
+.filterIcon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  padding: 16px;
+  background-color: white;
+  border-radius: 8px;
+  z-index: 2;
+  max-height: 40%;
+  overflow-y: scroll;
+}
+
+.dropdownItem {
+  cursor: pointer;
+  padding: 8px;
+  border-bottom: 1px solid gray;
+}

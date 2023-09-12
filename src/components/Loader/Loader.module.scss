@@ -1,0 +1,14 @@
+.loaderWrapper {
+  position: absolute;
+  z-index: 1;
+  backdrop-filter: blur(5px);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  font-size: 20px;
+}
