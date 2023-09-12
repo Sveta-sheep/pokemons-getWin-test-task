@@ -1,13 +1,20 @@
-import { PokemonsList } from 'components/PokemonsList/PokemonsList';
+import { PokemonsList } from 'components';
+import { PokemonDetails } from 'components/PokemonDetails';
 import React from 'react';
 import { Provider } from 'react-redux';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { store } from 'redux/store';
 
 function App() {
   return (
-    <Provider store={store}>
-      <PokemonsList />
-    </Provider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <Routes>
+          <Route path="/" element={<PokemonsList />} />
+          <Route path="/pokemon-detail/:pokemonId" element={<PokemonDetails />} />
+        </Routes>
+      </Provider>
+    </BrowserRouter>
   );
 }
 

@@ -1,4 +1,5 @@
 import { getPokemonFullInfo, getPokemons, PaginationParams } from 'api';
+import { handleError } from 'helpers';
 import { Dispatch } from 'redux';
 import { SET_POKEMON_INFO, SET_POKEMONS } from 'redux/actionTypes';
 import { GeneralPokemonInfo, PokemonFullInfo } from 'types';
@@ -7,11 +8,19 @@ export const setPokemons = (pokemons: GeneralPokemonInfo[], total: number) => ({
 export const setPokemonInfo = (pokemonInfo: PokemonFullInfo) => ({ type: SET_POKEMON_INFO, pokemonInfo });
 
 export const getPokemonsList = (props: PaginationParams) => async (dispatch: Dispatch) => {
-  const { results, count } = await getPokemons(props).then((res) => res);
-  return dispatch(setPokemons(results, count));
+  try {
+    const { results, count } = await getPokemons(props);
+    return dispatch(setPokemons(results, count));
+  } catch (error) {
+    handleError(error);
+  }
 };
 
 export const getPokemonInfo = (url: string) => async (dispatch: Dispatch) => {
-  const data = await getPokemonFullInfo({ url });
-  return dispatch(setPokemonInfo(data));
+  try {
+    const data = await getPokemonFullInfo({ url });
+    return dispatch(setPokemonInfo(data));
+  } catch (error) {
+    handleError(error);
+  }
 };
