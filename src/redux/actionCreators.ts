@@ -3,12 +3,12 @@ import { Dispatch } from 'redux';
 import { SET_POKEMON_INFO, SET_POKEMONS } from 'redux/actionTypes';
 import { GeneralPokemonInfo, PokemonFullInfo } from 'types';
 
-export const setPokemons = (pokemons: GeneralPokemonInfo[]) => ({ type: SET_POKEMONS, pokemons });
+export const setPokemons = (pokemons: GeneralPokemonInfo[], total: number) => ({ type: SET_POKEMONS, pokemons, total });
 export const setPokemonInfo = (pokemonInfo: PokemonFullInfo) => ({ type: SET_POKEMON_INFO, pokemonInfo });
 
 export const getPokemonsList = (props: PaginationParams) => async (dispatch: Dispatch) => {
-  const data = await getPokemons(props).then((res) => res.results);
-  return dispatch(setPokemons(data));
+  const { results, count } = await getPokemons(props).then((res) => res);
+  return dispatch(setPokemons(results, count));
 };
 
 export const getPokemonInfo = (url: string) => async (dispatch: Dispatch) => {

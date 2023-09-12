@@ -3,12 +3,14 @@ import { store } from 'redux/store';
 import { GeneralPokemonInfo, PokemonFullInfo } from 'types';
 
 export type PokemonState = {
-  pokemons: (GeneralPokemonInfo | PokemonFullInfo)[];
+  pokemons: GeneralPokemonInfo[];
+  total: number;
 };
 
 export type PokemonAction = {
   type: string;
   pokemons?: GeneralPokemonInfo[];
+  total?: number;
   pokemon?: PokemonFullInfo;
 };
 

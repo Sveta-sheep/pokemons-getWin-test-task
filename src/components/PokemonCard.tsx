@@ -9,7 +9,7 @@ export const PokemonCard = ({ url }: GeneralPokemonInfo) => {
 
   useEffect(() => {
     dispatch(getPokemonInfo(url)).then((res) => setPokemonInfo(res.pokemonInfo));
-  }, []);
+  }, [url]);
 
   return <div>{pokemonInfo?.name}</div>;
 };

@@ -4,7 +4,7 @@ import { GetPokemonFullInfoParams, PaginationParams, PaginationResponse } from '
 
 export const getPokemons = (props?: PaginationParams) =>
   axiosApi
-    .get<PaginationResponse>(`https://pokeapi.co/api/v2/pokemon?limit=${props?.limit}&offset=${props?.page}}`)
+    .get<PaginationResponse>(`https://pokeapi.co/api/v2/pokemon?limit=${props?.limit}&offset=${props?.page}`)
     .then((response) => response.data);
 
 export const getPokemonFullInfo = ({ url }: GetPokemonFullInfoParams) =>

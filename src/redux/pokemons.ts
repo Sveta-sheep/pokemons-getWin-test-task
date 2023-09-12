@@ -3,6 +3,7 @@ import { PokemonAction, PokemonState } from 'redux/types';
 
 const initialState: PokemonState = {
   pokemons: [],
+  total: 0,
 };
 
 export const pokemonsReducer = (state = initialState, action: PokemonAction): PokemonState => {
@@ -10,6 +11,8 @@ export const pokemonsReducer = (state = initialState, action: PokemonAction): Po
     case SET_POKEMONS: {
       const { pokemons = [] } = action;
       return {
+        ...state,
+        total: action?.total || 0,
         pokemons: [...state.pokemons, ...pokemons],
       };
     }
