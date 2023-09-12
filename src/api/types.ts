@@ -1,3 +1,5 @@
+import { PokemonType } from 'types';
+
 export type PaginationParams = Partial<{
   limit: number;
   page: number;
@@ -19,7 +21,7 @@ export type GetPokemonsResponse = {
   url: string;
 }[];
 
-export type Pokemon = {
-  id: string;
-  name: string;
+export type PokemonTypesResponse = {
+  count: number;
+  results: PokemonType[];
 };

@@ -1,17 +1,19 @@
 import { ThunkDispatch } from 'redux-thunk';
 import { store } from 'redux/store';
-import { GeneralPokemonInfo, PokemonFullInfo } from 'types';
+import { GeneralPokemonInfo, PokemonFullInfo, PokemonType } from 'types';
 
 export type PokemonState = {
-  pokemons: GeneralPokemonInfo[];
+  pokemons: (GeneralPokemonInfo | PokemonFullInfo)[];
   total: number;
+  types: PokemonType[];
 };
 
 export type PokemonAction = {
   type: string;
   pokemons?: GeneralPokemonInfo[];
   total?: number;
-  pokemon?: PokemonFullInfo;
+  pokemonInfo?: PokemonFullInfo;
+  pokemonTypes?: PokemonType[];
 };
 
 export type RootState = ReturnType<typeof store.getState>;

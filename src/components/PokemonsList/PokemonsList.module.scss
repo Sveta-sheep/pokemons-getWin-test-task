@@ -16,3 +16,10 @@
   column-gap: 10px;
   row-gap: 15px;
 }
+
+.inputWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px
+}

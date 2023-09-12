@@ -1,25 +1,26 @@
-import { getPokemonFullInfo, getPokemons, PaginationParams } from 'api';
+import { getPokemonFullInfo, getPokemons, getPokemonTypesRequest, PaginationParams } from 'api';
 import { handleError } from 'helpers';
 import { Dispatch } from 'redux';
-import { SET_POKEMON_INFO, SET_POKEMONS } from 'redux/actionTypes';
-import { GeneralPokemonInfo, PokemonFullInfo } from 'types';
+import { SET_POKEMON_TYPES, SET_POKEMONS } from 'redux/actionTypes';
+import { PokemonFullInfo, PokemonType } from 'types';
 
-export const setPokemons = (pokemons: GeneralPokemonInfo[], total: number) => ({ type: SET_POKEMONS, pokemons, total });
-export const setPokemonInfo = (pokemonInfo: PokemonFullInfo) => ({ type: SET_POKEMON_INFO, pokemonInfo });
+export const setPokemons = (pokemons: PokemonFullInfo[], total: number) => ({ type: SET_POKEMONS, pokemons, total });
+export const setPokemonTypes = (pokemonTypes: PokemonType[]) => ({ type: SET_POKEMON_TYPES, pokemonTypes });
 
 export const getPokemonsList = (props: PaginationParams) => async (dispatch: Dispatch) => {
   try {
     const { results, count } = await getPokemons(props);
-    return dispatch(setPokemons(results, count));
+    const pokemons = await Promise.all(results.map(({ url }) => getPokemonFullInfo({ url })));
+    return dispatch(setPokemons(pokemons, count));
   } catch (error) {
     handleError(error);
   }
 };
 
-export const getPokemonInfo = (url: string) => async (dispatch: Dispatch) => {
+export const getPokemonTypes = () => async (dispatch: Dispatch) => {
   try {
-    const data = await getPokemonFullInfo({ url });
-    return dispatch(setPokemonInfo(data));
+    const { results } = await getPokemonTypesRequest();
+    return dispatch(setPokemonTypes(results));
   } catch (error) {
     handleError(error);
   }

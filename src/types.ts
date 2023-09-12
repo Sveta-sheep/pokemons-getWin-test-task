@@ -40,10 +40,7 @@ export type PokemonSprites = {
   front_shiny_female: string | null;
 };
 
-export type PokemonType = {
-  slot: number;
-  type: GeneralPokemonInfo;
-};
+export type PokemonType = GeneralPokemonInfo;
 
 export interface PokemonFullInfo {
   id: number;
@@ -52,16 +49,14 @@ export interface PokemonFullInfo {
   forms: GeneralPokemonInfo[];
   game_indices: PokemonGameIndex[];
   height: number;
-  held_items: [];
   is_default: boolean;
   location_area_encounters: string;
   moves: PokemonMove[];
   name: string;
   order: number;
-  past_types: [];
   species: GeneralPokemonInfo;
   stats: PokemonStat[];
   sprites: PokemonSprites;
-  types: PokemonType[];
+  types: { slot: number; type: PokemonType }[];
   weight: number;
 }

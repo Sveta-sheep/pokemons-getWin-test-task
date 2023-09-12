@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { PokemonFullInfo } from 'types';
 
 export const capitalize = (text?: string) => {
   if (!text) return;
@@ -18,4 +19,18 @@ export const handleError = (error: unknown) => {
     const message = String(error);
     showToast(message, 'error');
   }
+};
+
+export const search = <T extends object>(array: T[], field: keyof T, query?: string) => {
+  if (!query) return array;
+
+  return array.filter((item) => (item[field] as unknown as string)?.toLowerCase()?.includes(query.toLowerCase()));
+};
+
+export const filterPokemonsByType = (pokemons: PokemonFullInfo[], selectedType?: string) => {
+  if (!selectedType || selectedType === 'All') return pokemons;
+
+  return pokemons.filter((pokemon) => {
+    return pokemon.types.some((type) => type.type.name === selectedType);
+  });
 };

@@ -1,6 +1,6 @@
 import { PokemonFullInfo } from 'types';
 import { axiosApi } from './axios';
-import { GetPokemonFullInfoParams, PaginationParams, PaginationResponse } from './types';
+import { GetPokemonFullInfoParams, PaginationParams, PaginationResponse, PokemonTypesResponse } from './types';
 
 export const getPokemons = (props?: PaginationParams) =>
   axiosApi
@@ -9,3 +9,6 @@ export const getPokemons = (props?: PaginationParams) =>
 
 export const getPokemonFullInfo = ({ url }: GetPokemonFullInfoParams) =>
   axiosApi.get<PokemonFullInfo>(`${url}`).then((response) => response.data);
+
+export const getPokemonTypesRequest = () =>
+  axiosApi.get<PokemonTypesResponse>('https://pokeapi.co/api/v2/type').then((response) => response.data);
