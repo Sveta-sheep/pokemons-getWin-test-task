@@ -10,11 +10,11 @@ const initialState: PokemonState = {
 export const pokemonsReducer = (state = initialState, action: PokemonAction): PokemonState => {
   switch (action.type) {
     case SET_POKEMONS: {
-      const { pokemons = [] } = action;
+      const { pokemons = [], total = 0 } = action;
 
       return {
         ...state,
-        total: action?.total || 0,
+        total,
         pokemons: [...state.pokemons, ...pokemons],
       };
     }

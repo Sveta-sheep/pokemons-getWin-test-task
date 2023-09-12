@@ -15,7 +15,7 @@ export const FilterByType = ({ setSelectedType }: FilterByTypeProps) => {
   const { types } = useAppSelector((state) => state.pokemons);
 
   useEffect(() => {
-    dispatch(getPokemonTypes()).then((res) => res?.pokemonTypes.unshift({ name: 'All', url: '' }));
+    dispatch(getPokemonTypes()).then((res) => res?.pokemonTypes.unshift({ name: 'all', url: '' }));
   }, []);
 
   const onTypeClick = (name: string) => {

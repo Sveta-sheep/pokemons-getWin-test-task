@@ -28,7 +28,7 @@ export const search = <T extends object>(array: T[], field: keyof T, query?: str
 };
 
 export const filterPokemonsByType = (pokemons: PokemonFullInfo[], selectedType?: string) => {
-  if (!selectedType || selectedType === 'All') return pokemons;
+  if (!selectedType || selectedType === 'all') return pokemons;
 
   return pokemons.filter((pokemon) => {
     return pokemon.types.some((type) => type.type.name === selectedType);

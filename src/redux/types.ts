@@ -12,7 +12,6 @@ export type PokemonAction = {
   type: string;
   pokemons?: GeneralPokemonInfo[];
   total?: number;
-  pokemonInfo?: PokemonFullInfo;
   pokemonTypes?: PokemonType[];
 };
 

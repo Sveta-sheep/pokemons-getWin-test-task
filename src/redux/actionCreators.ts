@@ -11,6 +11,7 @@ export const getPokemonsList = (props: PaginationParams) => async (dispatch: Dis
   try {
     const { results, count } = await getPokemons(props);
     const pokemons = await Promise.all(results.map(({ url }) => getPokemonFullInfo({ url })));
+
     return dispatch(setPokemons(pokemons, count));
   } catch (error) {
     handleError(error);
